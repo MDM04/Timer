@@ -16,9 +16,13 @@ const buttonVariants = {
 const ButtonContainer = styed.button<ButtonContainerProps>`
 width: 100px;
 height: 40px;
+border-radius: 4px;
+border: 0;
+margin: 8px;
 ${props =>{
      return `background-color: ${buttonVariants[props.variant]}`
 }}
+}
 `
 
 
