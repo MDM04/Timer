@@ -1,9 +1,9 @@
-import styles from "styled-components";
+import styled from "styled-components";
 import { Timer, Scroll } from "phosphor-react";
 import logoIgnite from "../assets/logo-ignite.svg";
 import { NavLink } from "react-router-dom";
 
-const HeaderContainer = styles.header`
+const HeaderContainer = styled.header`
 display: flex;
 align-items: center;
 justify-content: space-between;
