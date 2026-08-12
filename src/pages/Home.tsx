@@ -120,7 +120,6 @@ const newCycleFormValidationSchema = zod.object({
 });
 
 
-
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
