@@ -124,48 +124,52 @@ type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
   
-  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
       minutesAmount: 0,
-    }
-  });
+    },
+  })
+
   function handleCreateNewCycle(data: NewCycleFormData) {
-    console.log(data);
+    console.log(data)
+    reset()
   }
 
-  const task = watch("task");
-  const isSubmitDisabled = !task;
+  const task = watch('task')
+  const isSubmitDisable = !task
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
+      <form onSubmit={handleSubmit(handleCreateNewCycle)}>
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
           <TaskInput
-            type="text"
             id="task"
-            placeholder="Dê um nome para o seu projeto"
             list="task-suggestions"
-            {...register("task")}
+            placeholder="Dê um nome para o seu projeto"
+            {...register('task')}
           />
+
           <datalist id="task-suggestions">
             <option value="Projeto 1" />
             <option value="Projeto 2" />
             <option value="Projeto 3" />
+            <option value="Banana" />
           </datalist>
 
-          <label htmlFor="">durante</label>
+          <label htmlFor="minutesAmount">durante</label>
           <MinutesAmountInput
             type="number"
-            id="minutsAmount"
+            id="minutesAmount"
             placeholder="00"
             step={5}
             min={5}
             max={60}
-            {...register("minutesAmount", { valueAsNumber: true })}
+            {...register('minutesAmount', { valueAsNumber: true })}
           />
+
           <span>minutos.</span>
         </FormContainer>
 
@@ -177,11 +181,11 @@ export function Home() {
           <span>0</span>
         </CountdownContainer>
 
-        <StartCountdownButton type="button" disabled={isSubmitDisabled}>
+        <StartCountdownButton disabled={isSubmitDisable} type="submit">
           <Play size={24} />
           Começar
         </StartCountdownButton>
       </form>
     </HomeContainer>
-  );
+  )
 }
